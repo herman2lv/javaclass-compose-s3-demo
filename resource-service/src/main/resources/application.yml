@@ -10,3 +10,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+clients:
+  s3:
+    url: http://localstack:4566
+    bucket: some-bucket
+    access_key: key_access
+    secret_key: key_id
+  song-service: http://song-service:8080
