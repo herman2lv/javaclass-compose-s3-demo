@@ -23,7 +23,7 @@ public class SongsClientImpl implements SongsClient {
 
     @Override
     public void ping() {
-        eurekaClient.getApplication("SONG-SERVICE")
+        eurekaClient.getApplication(songServiceId)
                 .getInstances().forEach(ii -> {
                     log.info("EUREKA INFO: AppName {}", ii.getAppName());
                     log.info("EUREKA INFO: Id {}", ii.getId());
