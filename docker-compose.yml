@@ -21,6 +21,9 @@ services:
     build: song-service
     expose:
       - "8080"
+    deploy:
+      mode: replicated
+      replicas: 3
     depends_on:
       - discovery-server
   resource-service-db:
