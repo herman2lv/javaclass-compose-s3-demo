@@ -16,10 +16,13 @@ services:
       - "7000:8080"
     depends_on:
       - resource-service-db
+      - discovery-server
   song-service:
     build: song-service
     expose:
       - "8080"
+    depends_on:
+      - discovery-server
   resource-service-db:
     image: postgres
     expose:
