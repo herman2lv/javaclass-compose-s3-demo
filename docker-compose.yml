@@ -1,5 +1,9 @@
 version: "3.8"
 services:
+  localstack:
+    image: localstack/localstack
+    expose:
+      - "4566"
   resource-service:
     build: resource-service
     ports:
