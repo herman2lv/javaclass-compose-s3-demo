@@ -1,3 +1,4 @@
 rootProject.name = 'demo-s3'
 include 'resource-service'
 include 'song-service'
+include 'discovery-server'

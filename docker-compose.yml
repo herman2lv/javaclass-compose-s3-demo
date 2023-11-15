@@ -4,6 +4,12 @@ services:
     image: localstack/localstack
     expose:
       - "4566"
+  discovery-server:
+    build: discovery-server
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
   resource-service:
     build: resource-service
     ports:
