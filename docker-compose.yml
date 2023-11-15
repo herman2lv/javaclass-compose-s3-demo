@@ -4,12 +4,12 @@ services:
     image: localstack/localstack
     expose:
       - "4566"
+    restart: always
   discovery-server:
     build: discovery-server
     ports:
       - "8761:8761"
-    expose:
-      - "8761"
+    restart: always
   resource-service:
     build: resource-service
     ports:
@@ -17,6 +17,7 @@ services:
     depends_on:
       - resource-service-db
       - discovery-server
+    restart: always
   song-service:
     build: song-service
     expose:
@@ -26,6 +27,7 @@ services:
       replicas: 3
     depends_on:
       - discovery-server
+    restart: always
   resource-service-db:
     image: postgres
     expose:
@@ -35,5 +37,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=resources
+    restart: always
 volumes:
   resource-service-db:
