@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  resource-service:
+    build: resource-service
+    ports:
+      - "7000:8080"
+    depends_on:
+      - resource-service-db
+  song-service:
+    build: song-service
+    expose:
+      - "8080"
+  resource-service-db:
+    image: postgres
+    expose:
+      - 5432
+    volumes:
+      - resource-service-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=resources
+volumes:
+  resource-service-db:
