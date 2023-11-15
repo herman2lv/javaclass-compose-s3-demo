@@ -1,0 +1,2 @@
+rootProject.name = 'demo-s3'
+include 'song-service'
