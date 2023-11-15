@@ -22,4 +22,4 @@ clients:
     bucket: some-bucket
     access_key: key_access
     secret_key: key_id
-  song-service: http://song-service:8080
+  song-service: SONG-SERVICE
