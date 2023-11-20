@@ -1,5 +1,10 @@
 version: "3.8"
 services:
+  message-broker:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   localstack:
     image: localstack/localstack
     expose:
@@ -15,6 +20,7 @@ services:
     ports:
       - "7000:8080"
     depends_on:
+      - message-broker
       - resource-service-db
       - discovery-server
     restart: always
@@ -38,5 +44,12 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=resources
     restart: always
+  resource-processor:
+    build: resource-processor
+    deploy:
+      mode: replicated
+      replicas: 3
+    depends_on:
+      - message-broker
 volumes:
   resource-service-db:

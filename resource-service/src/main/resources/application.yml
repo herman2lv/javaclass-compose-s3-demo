@@ -7,6 +7,8 @@ eureka:
 spring:
   application:
     name: resource-service
+  rabbitmq:
+    host: message-broker
   datasource:
     url: jdbc:postgresql://resource-service-db:5432/resources
     username: postgres

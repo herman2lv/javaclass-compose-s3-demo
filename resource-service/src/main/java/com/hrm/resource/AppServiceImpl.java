@@ -16,6 +16,7 @@ public class AppServiceImpl implements AppService {
     private final EntityObjectRepository repository;
     private final SongsClient songsClient;
     private final StorageS3Client s3Client;
+    private final MessagePublisher messagePublisher;
 
     @Override
     public EntityObject get(Long id) {
@@ -25,6 +26,7 @@ public class AppServiceImpl implements AppService {
         String location = "/bark/" + key;
         s3Client.upload(content, location);
         log.info("uploaded to S3: '{}'", location);
+        messagePublisher.postMessage(id);
         String downloaded = s3Client.download(location);
         log.info("downloaded from S3: '{}'", downloaded);
         return repository.findById(id).orElseThrow();
